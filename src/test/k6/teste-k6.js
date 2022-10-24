@@ -10,17 +10,38 @@ export const requests = new Counter('http_reqs');
 // target is the number of VUs you are aiming for
 
 export const options = {
-  stages: [
-    { target: 250, duration: '1m' },
-    { target: 500, duration: '1m' },
-    { target: 750, duration: '1m' },
-    { target: 1000, duration: '1m' },
-   
-  ],
-  thresholds: {
-    http_req_duration: ['p(95)<200'],
-    http_req_failed: ['rate<0.01'],
-  },
+  scenarios: {
+    cenario1: {
+      executor: 'ramping-vus',
+    
+        startVUs: 0,
+        stages: [
+          { target: 250, duration: '1m' },
+          { target: 500, duration: '1m' },
+          
+        ],
+        gracefulRampDown: '1s',
+        gracefulStop: '1s'
+      
+    },
+    cenario2: {
+      executor: 'ramping-vus',
+      startVUs: 0,
+      stages: [
+          { target: 500, duration: '1m' },
+          { target: 750, duration: '1m' },
+          
+      ],
+      gracefulRampDown: '1s',
+      gracefulStop: '1s'
+      
+    }
+},
+
+thresholds: {
+  http_req_duration: ['p(95)<200'],
+  http_req_failed: ['rate<0.05'],
+}
 };
 
 export default function () {
