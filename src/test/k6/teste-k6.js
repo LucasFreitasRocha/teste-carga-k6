@@ -73,5 +73,23 @@ export default function () {
       'response body': (r) => JSON.parse(r.body).resultado == '2000.0',
     });
   });
+
+
+  group('7 * 7 = 49', function () {
+   
+    const payload = JSON.stringify({
+      "numero1": 7,
+      "numero2": 7
+    });
+    let res = post(`${baseurl}multiplicar`,payload);
+    if(JSON.parse(res.body).resultado != '49.0'){
+      console.log("Deu ruim 49.0 !=" , JSON.parse(res.body).resultado)
+    }
+    const checkRes = check(res, {
+    
+      'status is 200': (r) => r.status === 200,
+      'response body': (r) => JSON.parse(r.body).resultado == '49.0',
+    });
+  });
   
 }

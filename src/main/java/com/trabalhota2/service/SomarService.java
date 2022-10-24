@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SomarService {
 
-    public Float somar(Float numero1, Float numero2) {
+    public Float operar(Float numero1, Float numero2) {
         return  numero1 + numero2;
     }
 }

@@ -20,4 +20,9 @@ public class CalculadoraController {
     public ResponseEntity<ResultadoDTO> somar(@RequestBody OperacaoSimplesDTO operacaoSimplesDTO){
        return ResponseEntity.ok(service.somar(operacaoSimplesDTO));
     }
+
+    @PostMapping("/multiplicar")
+    public ResponseEntity<ResultadoDTO> multiplicar(@RequestBody OperacaoSimplesDTO operacaoSimplesDTO){
+        return ResponseEntity.ok(service.multiplicar(operacaoSimplesDTO));
+    }
 }
