@@ -34,16 +34,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker-compose up
   
-  test:
-    name: Run k6 test
-    runs-on: ubuntu-latest
   
-    steps:
-    - uses: grafana/k6-action@v0.2.0
-    - name: Run k6 local test
-    - with:
-        filename: my-script-file.js    
   
 
