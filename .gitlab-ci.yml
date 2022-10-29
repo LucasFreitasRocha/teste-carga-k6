@@ -1,0 +1,45 @@
+default:
+  tags:
+    - runner-shell-docker
+
+before_script:
+  - echo "Integração contínua ativada"
+
+cache: &global_cache
+  key: one-key-to-rule-them-all
+  paths: 
+  - target/
+  policy: pull-push
+
+stages:
+  - mvn
+  - docker
+  - test
+
+
+mvn:
+  stage: mvn
+  cache:
+    <<: *global_cache
+  script:
+    - echo "setup"
+    - mvn clean package
+
+docker:
+  stage: docker
+  cache:
+    <<: *global_cache
+    policy: pull
+  script:
+    - echo "test"
+    - docker-compose down --rmi all || true
+    - docker-compose up -d
+
+Test:
+  stage: test
+  cache:
+    <<: *global_cache
+    policy: pull
+  script:
+    - echo "test"
+  
