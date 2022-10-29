@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("/operacoes-complexas")
+@RestController
+@RequestMapping("/operacoes-complexas")
 public class OperacoesComplexasController {
 
     @Autowired private OperacoesComplexasService service;
