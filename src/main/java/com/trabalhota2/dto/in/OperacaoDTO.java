@@ -1,10 +1,14 @@
 package com.trabalhota2.dto.in;
 
-public class OperacaoSimplesDTO {
+import io.swagger.annotations.ApiModelProperty;
+
+public class OperacaoDTO {
+    @ApiModelProperty(name = "5" , value = "5")
     private Float numero1;
+    @ApiModelProperty(name = "5" , value = "5")
     private Float numero2;
 
-    public OperacaoSimplesDTO() {
+    public OperacaoDTO() {
     }
 
     public Float getNumero1() {
