@@ -20,7 +20,7 @@ jobs:
     - name: Build with Maven
       run: mvn clean install
 
-  docker:
+  up:
 
     runs-on: ubuntu-latest
     environment:
@@ -28,7 +28,12 @@ jobs:
       url: test.ts
     needs: mvn
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker-compose up
+    - name: Set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: maven
+    - name: Build with Maven
+      run: java -jar target/*.jar
   
